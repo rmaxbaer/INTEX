@@ -23,21 +23,15 @@ class Listing(models.Model):
     compensation = models.CharField(max_length=50)
     relocation_assistance = models.BooleanField(default=False)
     skills = models.ManyToManyField('applicant.Skill')
+    positions_available = models.IntegerField()
 
     def __str__(self):
         return self.name
 
 
-class Position(models.Model):
-
-    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    location = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 class Offer(models.Model):
 
-    position = models.ForeignKey(Position, on_delete=models.CASCADE)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
     applicant = models.ForeignKey('applicant.Applicant', on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     deadline = models.DateTimeField(auto_now=False, auto_now_add=False)
