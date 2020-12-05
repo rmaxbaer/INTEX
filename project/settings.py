@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blackcyberrecruiter',
         'USER': 'postgres',
-        'PASSWORD': 'asdf',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
     }
 }
