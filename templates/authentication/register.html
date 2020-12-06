@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block page-class %}login-page{% endblock page-class %}
 {% block content %}
-
-<body class="login-page sidebar-collapse">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
     <div class="container">
@@ -144,7 +143,5 @@
       </div>
     </footer>
   </div>
-</body>
 
-{{ block.super }}
 {% endblock content %}

@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentication.urls')),
     path('<str:username>/', include('applicant.urls')),
-    path('<str:organization_name>/', include('organization.urls')),
+    path('org/', include('organization.urls')),
 ]
