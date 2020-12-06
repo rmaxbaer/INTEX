@@ -2,17 +2,19 @@ from django.shortcuts import render
 
 # Create your views here.
 def LandingView(request):
-    pass
+    return render(request, 'authentication/landing.html')
 
 def ApplicantLoginView(request):
-    pass
+    return render(request, 'authentication/login.html')
+    
 
 def ApplicantRegistrationView(request):
-    pass
+    return render(request, 'authentication/register.html')
+    
 
 def OrganizationLoginView(request):
-    pass
+    return render(request, 'authentication/login.html')
 
 def OrganizationRegistrationView(request):
-    pass
+    return render(request, 'authentication/register.html')
 

@@ -2,37 +2,37 @@ from django.shortcuts import render
 
 # Create your views here.
 def ProfileView(request):
-    pass
+    return render(request, 'organization/org-profile.html')
 
 def ProfileEditView(request):
-    pass
+    return render(request, 'organization/org-edit-profile.html')
 
 def ListingsView(request):
-    pass
+    return render(request, 'organization/org-listings.html')
 
 def ListingView(request):
-    pass
+    return render(request, 'organization/org-listing.html')
 
 def ListingCreateView(request):
-    pass
+    return render(request, 'organization/create-listing.html')
 
 def ListingEditView(request):
-    pass
+    return render(request, 'organization/edit-listing.html')
 
 def ApplicationView(request):
-    pass
+    return render(request, 'organization/org-application.html')
 
 def ApplicationsView(request):
-    pass
+    return render(request, 'organization/org-applications.html')
 
 def OffersView(request):
-    pass
+    return render(request, 'organization/org-offers.html')
 
 def OfferView(request):
-    pass
+    return render(request, 'organization/org-offer.html')
 
 def ApplicantsView(request):
-    pass
+    return render(request, 'organization/org-users.html')
 
 def ApplicantView(request):
-    pass
+    return render(request, 'organization/org-user.html')
