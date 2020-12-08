@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Black Cyber Recruiter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'org-listings' organization_name %}">Listings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'org-applications' organization_name %}">Applications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'org-offers' organization_name %}">Offers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'org-users' organization_name %}">Applicants</a>
+        </li>
+      </ul>
+      <div class="nav-item dropdown ml-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="now-ui-icons users_circle-08"></i>
+            <p>Profile</p>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'org-profile' organization_name %}">View Profile</a>
+            <a class="dropdown-item" href="{% url 'org-edit-profile' organization_name %}">Edit Profile</a>
+            <a class="dropdown-item" href="#">Log Out</a>
+          </div>
+        </div>
+    </div>
+  </div>
+</nav>
+{% endblock content %}
