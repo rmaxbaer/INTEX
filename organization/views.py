@@ -5,10 +5,13 @@ from applicant.models import Application, Applicant, Skill
 # Create your views here.
 def OrgProfileView(request, organization_name):
     organization=Organization.objects.filter(username=organization_name)[0]
+    listings=Listing.objects.filter(organization=organization)
+    number_of_listings=listings.count()
     
     context = {
         'organization_name':organization_name,
-        'organization':organization
+        'organization':organization,
+        'number_of_listings':number_of_listings
     }    
     return render(request, 'organization/org-profile.html', context)
 
@@ -17,11 +20,16 @@ def OrgProfileEditView(request, organization_name):
     
     context = {
         'organization_name':organization_name,
-        'organization':organization
+        'organization':organization,
+        'date_founded':str(organization.date_founded)
     }
 
     if request.method == 'POST':
         organization.company_name = request.POST['company_name']
+        organization.email = request.POST['email']
+        organization.address = request.POST['address']
+        organization.state = request.POST['state']
+        organization.zip = request.POST['zip']
         organization.size = request.POST['size']
         organization.sectors = request.POST['sectors']
         organization.description = request.POST['description']
