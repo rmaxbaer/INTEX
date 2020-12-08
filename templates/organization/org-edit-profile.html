@@ -10,6 +10,10 @@
         <input type="text" class="form-control" id="sectors" name="sectors" value="{{organization.sectors}}"/>
         <textarea rows="10" class="form-control" id="description" name="description">{{organization.description}}</textarea>
         <input type="date" class="form-control" id="date_founded" name="date_founded" value="{{organization.date_founded}}"/>
+        <label for="profile_picture">Choose a profile picture:</label>
+        <input type="file" id="profile_picture" name="profile_picture" accept="image/png, image/jpeg, image/jpg, image/gif">
+        <label for="cover_picture">Choose a cover photo:</label>
+        <input type="file" id="cover_picture" name="cover_picture" accept="image/png, image/jpeg, image/jpg">
         <button class="btn btn-primary btn-round ml-auto" type="button" onclick="location.href='{% url 'org-profile' organization_name %}'">
             <i class="now-ui-icons ui-1_check"></i>&#160;Continue Without Saving
         </button>

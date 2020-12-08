@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blackcyberrecruiter',
         'USER': 'postgres',
-        'PASSWORD': 'asdf',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
     }
 }
@@ -130,3 +130,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'project/static')
 ] 
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'project/media')
