@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 class Organization(User):
 
     company_name = models.CharField(max_length=50)
-    size = models.CharField(max_length=4)
-    sectors = models.CharField(max_length=4)
-    description = models.TextField()
-    date_founded = models.DateField(auto_now=False, auto_now_add=False)
+    size = models.CharField(max_length=4, blank=True)
+    sectors = models.CharField(max_length=4, blank=True)
+    description = models.TextField(blank=True)
+    date_founded = models.DateField(auto_now=False, auto_now_add=False, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.company_name
 
 
 class Listing(models.Model):
@@ -19,25 +19,25 @@ class Listing(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=50)
     job_description = models.TextField()
-    contract_type = models.CharField(max_length=50)
+    contract_type = models.CharField(max_length=50, blank=True)
     compensation = models.CharField(max_length=50)
     relocation_assistance = models.BooleanField(default=False)
-    skills = models.ManyToManyField('applicant.Skill')
+    skills = models.ManyToManyField('applicant.Skill', blank=True)
     positions_available = models.IntegerField()
+    location = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return self.job_title
 
 
 class Offer(models.Model):
 
-    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    applicant = models.ForeignKey('applicant.Applicant', on_delete=models.CASCADE)
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    application = models.ForeignKey('applicant.Application', on_delete=models.CASCADE)
     deadline = models.DateTimeField(auto_now=False, auto_now_add=False)
     start_date = models.DateField(auto_now=False, auto_now_add=False)
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=50, default='extended')
+    offer_accepted = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 

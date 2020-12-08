@@ -1,32 +1,32 @@
 from django.shortcuts import render
 
 # Create your views here.
-def ProfileView(request):
+def ProfileView(request, username):
     pass
 
-def ProfileEditView(request):
+def ProfileEditView(request, username):
     pass
 
-def ListingsView(request):
+def ListingsView(request, username):
     pass
 
-def ListingView(request):
+def ListingView(request, username):
     pass
 
-def ApplicationView(request):
+def ApplicationView(request, username):
     pass
 
-def ApplicationsView(request):
+def ApplicationsView(request, username):
     pass
 
-def OffersView(request):
+def OffersView(request, username):
     pass
 
-def OfferView(request):
+def OfferView(request, username):
     pass
 
-def OrganizationView(request):
+def OrganizationView(request, username):
     pass
 
-def OrganizationsView(request):
+def OrganizationsView(request, username):
     pass

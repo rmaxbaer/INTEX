@@ -13,17 +13,18 @@ class Skill(models.Model):
 class Applicant(User):
 
     birth_date = models.DateField(auto_now=False, auto_now_add=False)
-    resume = models.FileField(upload_to=None, max_length=100)
-    skills = models.ManyToManyField(Skill)
+    resume = models.FileField(upload_to=None, max_length=100, blank=True)
+    skills = models.ManyToManyField(Skill, blank=True)
 
     def __str__(self):
-        return User.first_name + ' ' + User.last_name
+        return self.first_name + ' ' + self.last_name
 
 class Application(models.Model):
 
     application_date = models.DateTimeField(auto_now=False, auto_now_add=False)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     listing = models.ForeignKey('organization.Listing', on_delete=models.CASCADE)
+    offer_made = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return str(self.id)
