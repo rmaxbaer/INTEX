@@ -4,6 +4,16 @@
 {{ block.super }}
 <div class="container">
 <h1>Applicants</h1>
+<form method="post">
+{% csrf_token %}
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Search" name="applicant_name">
+    <div class="input-group-append">
+        <span class="input-group-text"><i class="now-ui-icons ui-1_zoom-bold"></i></span>
+    </div>
+</div>
+<input type="submit" hidden/>
+</form>
 <div class="row">
 {% for applicant in applicants %}
 
