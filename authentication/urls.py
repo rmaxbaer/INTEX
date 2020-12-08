@@ -5,6 +5,6 @@ urlpatterns = [
     path('', LandingView, name='home'),
     path('login/', ApplicantLoginView, name='login'),
     path('register/', ApplicantRegistrationView, name='register'),
-    path('organization/login/', OrganizationLoginView, name='org-login'),
-    path('organization/register/', OrganizationRegistrationView, name='org-register'),
+    path('org/login/', OrganizationLoginView, name='org-login'),
+    path('org/register/', OrganizationRegistrationView, name='org-register'),
 ]

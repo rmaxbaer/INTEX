@@ -36,26 +36,18 @@
                 <div class="input-group no-border input-lg">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
+                      <i class="now-ui-icons business_briefcase-24"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="company_name" placeholder="Business Name...">
+                </div>
+                <div class="input-group no-border input-lg">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
                       <i class="now-ui-icons ui-1_email-85"></i>
                     </span>
                   </div>
                   <input type="email" class="form-control" name="email" placeholder="Email...">
-                </div>
-                <div class="input-group no-border input-lg">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="now-ui-icons business_briefcase-24"></i>
-                    </span>
-                  </div>
-                  <input type="text" class="form-control" name="first_name" placeholder="First Name...">
-                </div>
-                <div class="input-group no-border input-lg">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="now-ui-icons business_briefcase-24"></i>
-                    </span>
-                  </div>
-                  <input type="text" class="form-control" name="last_name" placeholder="Last Name...">
                 </div>
                 <div class="input-group no-border input-lg">
                   <div class="input-group-prepend">
@@ -143,7 +135,7 @@
                 <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Get Started</button>
                 <div class="pull-left">
                   <h6>
-                    <a href="{% url 'login' %}" class="link">Back to Login</a>
+                    <a href="{% url 'org-login' %}" class="link">Back to Login</a>
                   </h6>
                 </div>
             </form>

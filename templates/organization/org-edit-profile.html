@@ -3,11 +3,12 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
-    <form class="form">
-        <input type="text" class="form-control" id="company_name" name="company_name" placeholder="{{ organization.company_name }}"/>
-        <input type="text" class="form-control" id="size" name="size" placeholder="{{organization.size}}"/>
-        <input type="text" class="form-control" id="sectors" name="sectors" placeholder="{{organization.sectors}}"/>
-        <textarea rows="10" class="form-control" id="description" name="description" placeholder="{{organization.description}}"></textarea>
+    <form class="form" method="post">
+    {% csrf_token %}
+        <input type="text" class="form-control" id="company_name" name="company_name" value="{{ organization.company_name }}"/>
+        <input type="text" class="form-control" id="size" name="size" value="{{organization.size}}"/>
+        <input type="text" class="form-control" id="sectors" name="sectors" value="{{organization.sectors}}"/>
+        <textarea rows="10" class="form-control" id="description" name="description">{{organization.description}}</textarea>
         <input type="date" class="form-control" id="date_founded" name="date_founded" value="{{organization.date_founded}}"/>
         <button class="btn btn-primary btn-round ml-auto" type="button" onclick="location.href='{% url 'org-profile' organization_name %}'">
             <i class="now-ui-icons ui-1_check"></i>&#160;Continue Without Saving

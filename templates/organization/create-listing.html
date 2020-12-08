@@ -3,7 +3,8 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
-    <form class="form">
+    <form class="form" method="post">
+    {% csrf_token %}
         <input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job Title..."/>
         <input type="text" class="form-control" id="location" name="location" placeholder="Location..."/>
         <input type="text" class="form-control" id="compensation" name="compensation" placeholder="Compensation Description..."/>
@@ -13,7 +14,7 @@
             <div class="form-group md-col-4">
                 <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox"> Relocation Assistance
+                    <input class="form-check-input" type="checkbox" name="relocation_assistance"> Relocation Assistance
                     <span class="form-check-sign">
                     <span class="check"></span>
                     </span>

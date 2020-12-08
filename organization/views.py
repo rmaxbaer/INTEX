@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Listing, Organization, Offer
 from applicant.models import Application, Applicant, Skill
 
@@ -19,6 +19,16 @@ def OrgProfileEditView(request, organization_name):
         'organization_name':organization_name,
         'organization':organization
     }
+
+    if request.method == 'POST':
+        organization.company_name = request.POST['company_name']
+        organization.size = request.POST['size']
+        organization.sectors = request.POST['sectors']
+        organization.description = request.POST['description']
+        organization.date_founded = request.POST['date_founded']
+        organization.save()
+        return redirect('org-profile', organization_name)
+
     return render(request, 'organization/org-edit-profile.html', context)
 
 def OrgListingsView(request, organization_name):
@@ -49,6 +59,19 @@ def OrgListingCreateView(request, organization_name):
         'organization_name':organization_name,
         'organization':organization
     }
+
+    if request.method == 'POST':
+        listing = Listing.objects.create(
+            organization = organization,
+            job_title = request.POST['job_title'],
+            job_description = request.POST['job_description'],
+            contract_type = request.POST['contract_type'],
+            compensation = request.POST['compensation'],
+            relocation_assistance = ('on' == request.POST['relocation_assistance']),
+            positions_available = request.POST['positions_available'],
+            location = request.POST['location'],
+        )
+        return redirect('org-listing', organization_name, listing.id)
     return render(request, 'organization/create-listing.html', context)
 
 def OrgListingEditView(request, organization_name, listing_id):
@@ -60,6 +83,18 @@ def OrgListingEditView(request, organization_name, listing_id):
         'organization':organization,
         'listing':listing
     }
+    if request.method == 'POST':
+        listing.organization = organization
+        listing.job_title = request.POST['job_title']
+        listing.job_description = request.POST['job_description']
+        listing.contract_type = request.POST['contract_type']
+        listing.compensation = request.POST['compensation']
+        listing.relocation_assistance = ('on' == request.POST['relocation_assistance'])
+        listing.positions_available = request.POST['positions_available']
+        listing.location = request.POST['location']
+        listing.save()
+        return redirect('org-listing', organization_name, listing.id)
+
     return render(request, 'organization/edit-listing.html', context)
 
 def OrgApplicationView(request, organization_name, application_id):
@@ -71,6 +106,22 @@ def OrgApplicationView(request, organization_name, application_id):
         'organization':organization,
         'application':application
     }
+    if request.method == 'POST':
+        if request.POST['submit'] == 'decline':
+            application.status = 'declined'
+            application.save()
+            return redirect('org-applications', organization_name)
+        elif request.POST['submit'] == 'accept':
+            application.status = 'accepted'
+            offer = Offer.objects.create(
+                application = application,
+                deadline = request.POST['deadline'],
+                start_date = request.POST['start_date'],
+                compensation = request.POST['compensation'],
+                message = request.POST['message']
+            )
+            return redirect('org-offer', organization_name, offer.id)
+
     return render(request, 'organization/org-application.html', context)
 
 def OrgApplicationsView(request, organization_name):
@@ -86,11 +137,13 @@ def OrgApplicationsView(request, organization_name):
 
 def OrgOffersView(request, organization_name):
     organization=Organization.objects.filter(username=organization_name)[0]
-    
+    listings = Listing.objects.filter(organization=organization)
+    applications = Application.objects.filter(listing__in=listings)
+
     context = {
         'organization_name':organization_name,
         'organization':organization,
-        'offers':Offer.objects.filter(organization=organization)
+        'offers':Offer.objects.filter(application__in=applications)
     }
     return render(request, 'organization/org-offers.html', context)
 
