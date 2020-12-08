@@ -5,11 +5,11 @@
 {{ block.super }}
   <div class="wrapper">
     <div class="page-header clear-filter page-header-small" filter-color="orange">
-      <div class="page-header-image" data-parallax="true" style="background-image:url('../assets/img/bg5.jpg');">
+      <div class="page-header-image" data-parallax="true" style="background-image:url('{{ organization.cover_picture.url }}');">
       </div>
       <div class="container">
         <div class="photo-container">
-          <img src="{{ organization.profile_picture }}" alt="profile picture">
+          <img src="{{ organization.profile_picture.url }}" alt="profile picture">
         </div>
         <h3 class="title">{{organization}}</h3>
         <p class="category">Recruiting</p>

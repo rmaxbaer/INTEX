@@ -26,8 +26,14 @@ def OrgProfileEditView(request, organization_name):
         organization.sectors = request.POST['sectors']
         organization.description = request.POST['description']
         organization.date_founded = request.POST['date_founded']
-        organization.profile_picture = request.POST['profile_picture']
-        organization.cover_picture = request.POST['cover_picture']
+        try :
+            organization.profile_picture = request.FILES['profile_picture']
+        except :
+            pass
+        try :
+            organization.cover_picture = request.FILES['cover_picture']
+        except :
+            pass
         organization.save()
         return redirect('org-profile', organization_name)
 

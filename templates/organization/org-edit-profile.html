@@ -3,7 +3,7 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
-    <form class="form" method="post">
+    <form class="form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
         <input type="text" class="form-control" id="company_name" name="company_name" value="{{ organization.company_name }}"/>
         <input type="text" class="form-control" id="size" name="size" value="{{organization.size}}"/>
