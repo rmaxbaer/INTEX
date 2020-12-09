@@ -3,51 +3,56 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
-<h1>Applicants</h1>
-<form method="post">
-{% csrf_token %}
-<div class="input-group">
-    <input type="text" class="form-control" placeholder="Search" name="applicant_name">
-    <div class="input-group-append">
-        <span class="input-group-text"><i class="now-ui-icons ui-1_zoom-bold"></i></span>
-    </div>
-</div>
-<input type="submit" hidden/>
-</form>
-<div class="row">
-{% for applicant in applicants %}
-
-<div class="col-md-10 col-xl-6">
-    <!-- Tabs with Background on Card -->
-    <div class="card">
-        <div class="card-header">
-            <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-                <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#applicant{{applicant.id}}" role="tab" aria-selected="true">Information</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#moreinfo{{applicant.id}}" role="tab" aria-selected="false">Skills</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'org-user' organization_name applicant.id %}">View Applicant Profile</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <!-- Tab panes -->
-            <div class="tab-content text-left">
-                <div class="tab-pane active" id="applicant{{applicant.id}}" role="applicant{{applicant.id}}">
-                    <p>Applicant: {{applicant}}</p>
-                    <p>Address: </p>
-                    {% comment %} <p>Age: {{((today().year) - (applicant.birth_date.year))}}</p>    {% endcomment %}
-                </div>
+    <h1>Applicants</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="applicant_name">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="now-ui-icons ui-1_zoom-bold"></i></span>
             </div>
         </div>
+        <input type="submit" hidden />
+    </form>
+    <div class="row">
+        {% for applicant in applicants %}
+
+        <div class="col-md-10 col-xl-6">
+            <!-- Tabs with Background on Card -->
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist"
+                        data-background-color="orange">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#applicant{{applicant.id}}" role="tab"
+                                aria-selected="true">Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#moreinfo{{applicant.id}}" role="tab"
+                                aria-selected="false">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'org-user' organization_name applicant.username %}">View
+                                Applicant Profile</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <!-- Tab panes -->
+                    <div class="tab-content text-left">
+                        <div class="tab-pane active" id="applicant{{applicant.id}}" role="applicant{{applicant.id}}">
+                            <p>Applicant: {{applicant}}</p>
+                            <p>Address: </p>
+                            {% comment %} <p>Age: {{((today().year) - (applicant.birth_date.year))}}</p>
+                            {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Tabs on plain Card -->
+        </div>
+        {% endfor %}
     </div>
-    <!-- End Tabs on plain Card -->
-</div>
-{% endfor %}
-</div>
 </div>
 
 {% endblock content %}

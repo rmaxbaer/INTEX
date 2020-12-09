@@ -1,18 +1,26 @@
-{% extends 'organization/_base.html' %}
+{% extends 'applicant/_base.html' %}
 {% load static %}
 {% block content %}
 {{ block.super }}
 <div class="container">
-    <h2>Edit Profile</h2>
+<h2>Edit Profile</h2>
     <form class="form" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    {% csrf_token %}
+        <div class="form-row">
+            <div class="input-group col-md-6 input-lg col">
+                <input type="text" class="form-control" id="first_name" name="first_name"{%if applicant.first_name != ''%} value="{{applicant.first_name}}"{% endif %} placeholder="First Name"/>
+            </div>
+            <div class="input-group col-md-6 input-lg col">
+                <input type="text" class="form-control" id="last_name" name="last_name"{%if applicant.last_name != ''%} value="{{applicant.last_name}}"{% endif %} placeholder="Last Name"/>
+            </div>
+        </div>
         <div class="input-group input-lg">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="now-ui-icons business_briefcase-24"></i>
+                    <i class="now-ui-icons ui-1_calendar-60"></i>
                 </span>
             </div>
-            <input type="text" class="form-control" name="company_name" placeholder="Business Name...">
+            <input type="date" class="form-control" id="birth_date" name="birth_date"{%if applicant.birth_date != ''%} value="{{ birth_date }}"{% endif %} />
         </div>
         <div class="input-group input-lg">
             <div class="input-group-prepend">
@@ -20,8 +28,7 @@
                     <i class="now-ui-icons ui-1_email-85"></i>
                 </span>
             </div>
-            <input type="email" class="form-control" name="email" {%if organization.email != ''%}
-                value="{{organization.email}}" {% endif %} placeholder="Email...">
+            <input type="email" class="form-control" name="email" {%if applicant.email != ''%} value="{{applicant.email}}" {% endif %} placeholder="Email..." >
         </div>
         <div class="input-group input-lg">
             <div class="input-group-prepend">
@@ -29,20 +36,20 @@
                     <i class="now-ui-icons tech_mobile"></i>
                 </span>
             </div>
-            <input type="tel" placeholder="Phone Number..." name="phone_number" class="form-control" />
+            <input type="tel" placeholder="Phone Number..." name="phone_number" class="form-control" {%if applicant.phone_number != ''%} value="{{applicant.phone_number}}" {% endif %} />
         </div>
         <label for="address">Address: </label>
         <div class="input-group input-lg">
-
+            
             <div class="input-group-prepend">
                 <span class="input-group-text">
                     <i class="far fa-building"></i>
                 </span>
             </div>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Address...">
+            <input type="text" class="form-control" id="address" name="address" {%if applicant.email != ''%} value="{{applicant.address}}" {% endif %}placeholder="Address...">
         </div>
         <div class="form-group input-lg">
-            <input type="text" class="form-control" id="inputCity" name="city" placeholder="City...">
+            <input type="text" class="form-control" id="inputCity" name="city" {%if applicant.email != ''%} value="{{applicant.city}}" {% endif %}placeholder="City...">
         </div>
         <div class="form-row">
             <div class="form-group col-md-5 input-lg">
@@ -103,30 +110,12 @@
                 </select>
             </div>
             <div class="form-group col-md-7 input-lg">
-                <input type="text" class="form-control" id="inputZip" name="zip" placeholder="Zip...">
-            </div>
-        </div>
-        <label for="size">Company Details: </label>
-        <div class="form-row">
-            <div class="input-group col-md-6 input-lg col">
-                <input type="text" class="form-control" id="size" name="size" placeholder="Size" />
-            </div>
-            <div class="input-group col-md-6 input-lg col">
-                <input type="text" class="form-control" id="sectors" name="sectors" placeholder="Sector" />
+                <input type="text" class="form-control" id="inputZip" name="zip"{%if applicant.zip != ''%} value="{{applicant.zip}}" {% endif %} placeholder="Zip...">
             </div>
         </div>
         <div class="input-group">
-            <label for="description">Description: </label>
-            <textarea rows="10" class="form-control" id="description"
-                name="description">{{organization.description}}</textarea>
-        </div>
-        <div class="input-group input-lg">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="now-ui-icons ui-1_calendar-60"></i>
-                </span>
-            </div>
-            <input type="date" class="form-control" id="date_founded" name="date_founded" value="{{ date_founded }}" />
+            <label for="description">About Me: </label>
+            <textarea rows="10" class="form-control" id="description" name="description">{{applicant.about_me}}</textarea>
         </div>
         <div class="form-row">
             <div class="input-group input-lg col-md-6">
@@ -136,8 +125,7 @@
                     </span>
                 </div>
                 <label for="profile_picture" class="form-control">Choose a profile picture:</label>
-                <input type="file" class="form-control" id="profile_picture" name="profile_picture"
-                    accept="image/png, image/jpeg, image/jpg, image/gif" />
+                <input type="file" class="form-control" id="profile_picture" name="profile_picture" {%if applicant.profile_picture != ''%} value="{{applicant.profile_picture}}" {% endif %}accept="image/png, image/jpeg, image/jpg, image/gif"/>
             </div>
             <div class="input-group input-lg col-md-6">
                 <div class="input-group-prepend">
@@ -146,13 +134,22 @@
                     </span>
                 </div>
                 <label for="cover_picture" class="form-control">Choose a cover photo:</label>
-                <input type="file" class="form-control" id="cover_picture" name="cover_picture"
-                    accept="image/png, image/jpeg, image/jpg" />
+                <input type="file" class="form-control" id="cover_picture" name="cover_picture"{%if applicant.cover_picture != ''%} value="{{applicant.cover_picture}}" {% endif %} accept="image/png, image/jpeg, image/jpg"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-group input-lg col-md-6">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="now-ui-icons design_image"></i>
+                    </span>
+                </div>
+                <label for="resume" class="form-control">Upload a resume</label>
+                <input type="file" class="form-control" id="resume" name="resume"{%if applicant.resume != ''%} value="{{applicant.resume}}" {% endif %}/>
             </div>
         </div>
         <div class="form-row ml-auto mr-auto">
-            <button class="btn btn-danger btn-round" type="button"
-                onclick="location.href='{% url 'org-profile' organization_name %}'">
+            <button class="btn btn-danger btn-round" type="button" onclick="location.href='{% url 'profile' username %}'">
                 <i class="now-ui-icons ui-1_simple-remove"></i>&#160;Discard Changes
             </button>
             <button class="btn btn-primary btn-round" type="submit">
