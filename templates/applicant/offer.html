@@ -1,0 +1,51 @@
+{% extends 'applicant/_base.html' %}
+{% load static %}
+{% block content %}
+{{ block.super }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Offer</h3>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-round ml-auto" type="button" data-toggle="modal"
+                data-target="#rescindModal">
+                <i class="fas fa-pencil-alt"></i>&#160;Accept Offer
+            </button>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="modal fade" id="rescindModal" tabindex="-1" role="dialog" aria-labelledby="rescindModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to accept this offer?
+                            </h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go Back</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Yes, Accept Offer!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="typography-line">
+        <h1>{{ offer.application.applicant }} - {{ offer.application.listing.job_title }}</h1>
+    </div>
+    <div class="typography-line">
+        <h3>Status: {{ offer.status }}</h3>
+    </div>
+    <div class="typography-line">
+        <p><i class="fas fa-dollar-sign"></i> Compensation Offered: {{ offer.compensation }}</p>
+    </div>
+    <div class="typography-line">
+        <p><i class="now-ui-icons ui-1_calendar-60"></i> Start Date: {{ offer.start_date }}</p>
+    </div>
+    <div class="typography-line">
+        <p><i class="now-ui-icons ui-2_time-alarm"></i> Accept Offer Deadline: {{ offer.deadline }}</p>
+    </div>
+</div>
+{% endblock content %}

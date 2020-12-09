@@ -15,7 +15,7 @@
 <input type="submit" hidden/>
 </form>
 <div class="row">
-{% for organization in organization %}
+{% for organization in organizations %}
 
 <div class="col-md-10 col-xl-6">
     <!-- Tabs with Background on Card -->
@@ -23,23 +23,26 @@
         <div class="card-header">
             <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
                 <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#applicant{{applicant.id}}" role="tab" aria-selected="true">Information</a>
+                <a class="nav-link active" data-toggle="tab" href="#organization{{organization.id}}" role="tab" aria-selected="true">Information</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#moreinfo{{applicant.id}}" role="tab" aria-selected="false">Listings</a>
+                <a class="nav-link" data-toggle="tab" href="#moreinfo{{organization.id}}" role="tab" aria-selected="false">More Info</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{% url 'org-user' username organization.id %}">View Organization Profile</a>
+                <a class="nav-link" href="{% url 'employer' username organization.company_name %}">View Organization Profile</a>
                 </li>
             </ul>
         </div>
         <div class="card-body">
             <!-- Tab panes -->
             <div class="tab-content text-left">
-                <div class="tab-pane active" id="applicant{{applicant.id}}" role="applicant{{applicant.id}}">
+                <div class="tab-pane active" id="organization'{{organization.id}}'" role="organization{{organization.id}}">
                     <p>Organization: {{organization}}</p>
-                    <p>Address: </p>
+                    <p>Address: {{organization.address}} {{organization.city}}, {{organization.state}}</p>
                     {% comment %} <p>Age: {{((today().year) - (applicant.birth_date.year))}}</p>    {% endcomment %}
+                </div>
+                <div class="tab-pane active" id="organization'{{organization.id}}'" role="organization{{organization.id}}">
+                    <p>Organization Information: {{organization.description}}</p>
                 </div>
             </div>
         </div>

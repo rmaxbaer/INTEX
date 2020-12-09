@@ -1,0 +1,40 @@
+{% extends 'organization/_base.html' %}
+{% load static %}
+{% block page-class %}profile-page{% endblock page-class %}
+{% block content %}
+{{ block.super }}
+<div class="wrapper">
+  <div class="page-header page-header-small">
+    <div class="page-header-image" data-parallax="true"
+      style="background-image:url('{{ organization.cover_picture.url }}');">
+    </div>
+    <div class="container">
+      <div class="photo-container">
+        <img src="{{ organization.profile_picture.url }}" alt="profile picture">
+      </div>
+      <h3 class="title">{{organization}}</h3>
+      <p class="category">{{organization.city}}, {{organization.state}}</p>
+      <div class="content">
+        <div class="social-description">
+          <h2>{{number_of_listings}}</h2>
+          <p>Open Positions</p>
+        </div>
+        <div class="social-description">
+          <h2>3</h2>
+          <p>Locations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="button-container">
+        <a href="{% url 'listings' username %}" class="btn btn-primary btn-round btn-lg">See Listings </a>
+      </div>
+      <h3 class="title">About {{organization}}</h3>
+      <h5 class="description">{{organization.description}}</h5>
+    </div>
+  </div>
+</div>
+</body>
+{% endblock content %}

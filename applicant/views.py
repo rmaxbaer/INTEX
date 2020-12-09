@@ -101,17 +101,22 @@ def OffersView(request, username):
 
 def OfferView(request, username, offer_id):
     applicant = Applicant.objects.filter(username=username)
+    offer = Offer.objects.filter(id=offer_id)[0]
 
     context = {
         'username':username,
         'applicant':applicant,
-        'offer':Offer.objects.filter(id=offer_id)
+        'offer':offer
     }
+
+    if request.method == 'POST':
+        offer.status = request.POST['accepted']
+
     return render(request, 'applicant/offer.html', context)
 
 def OrganizationView(request, username, organization_name):
-    applicant = Applicant.objects.filter(username=username)
-    organization = Organization.objects.filter(username=organization_name)[0]
+    applicant = Applicant.objects.filter(username=username)[0]
+    organization = Organization.objects.filter(company_name=organization_name)[0]
 
     context = {
         'username':username,

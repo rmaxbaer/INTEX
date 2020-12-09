@@ -2,8 +2,8 @@
 {% load static %}
 {% block page-class %}login-page{% endblock page-class %}
 {% block content %}
-<div class="page-header clear-filter" filter-color="orange">
-  <div class="page-header-image" style="background-image:url({% static 'img/login.jpg' %})"></div>
+<div class="page-header clear-filter" filter-color="grey">
+  <div class="page-header-image" style="background-image:url({% static 'img/login-background.jpg' %})"></div>
   <div class="content">
     <div class="container">
       <div class="col-md-6 ml-auto mr-auto">
@@ -20,7 +20,7 @@
               <div class="input-group no-border input-lg">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <i class="now-ui-icons business_briefcase-24"></i>
+                    <i class="now-ui-icons users_circle-08"></i>
                   </span>
                 </div>
                 <input type="text" class="form-control" name="username" placeholder="Username...">
@@ -71,7 +71,7 @@
               <div class="form-row">
                 <div class="form-group col-md-5 no-border input-lg">
                   <select id="inputState" class="form-control" name="state">
-                    <option selected>State...</option>
+                    <option value="" selected disabled>State...</option>
                     <option></option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
