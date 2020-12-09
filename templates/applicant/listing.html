@@ -1,0 +1,89 @@
+{% extends 'applicant/_base.html' %}
+{% load static %}
+{% block content %}
+{{ block.super }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <h3>Listing</h3>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary btn-round ml-auto" type="button" data-toggle="modal"
+                data-target="#applyModal">
+                <i class="fas fa-pencil-alt"></i>&#160;Apply
+            </button>
+            <!--apply modal-->
+            <form method="post">
+            {% csrf_token %}
+                <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="applyModalLabel">Application Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="available_date">Available Date:</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="date" name="available_date" id="available_date"
+                                            class="form-control date-picker" data-datepicker-color="primary">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="deadline">Response Deadline:</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="date" class="form-control date-picker" name="deadline"
+                                            id="deadline" data-datepicker-color="primary">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="compensation"
+                                        placeholder="Compensation Requests">
+                                </div>
+                                <textarea class="form-control" name="message" placeholder="Express your interest in the position" rows="4"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" name="submit" class="btn btn-primary" value="accept">Extend
+                                    Offer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% comment %} End Modal {% endcomment %}
+        </div>
+    </div>
+    <div class="typography-line">
+        <h1>{{ listing.job_title }}</h1>
+    </div>
+    <div class="typography-line">
+        <h6>{{ listing.location }}</h6>
+    </div>
+    <div class="typography-line">
+        <p>{% if listing.relocation_assistance %}This position offers relocation assistance if
+            needed.{% else %}Relocation assistance is not available for this position.{% endif %}</p>
+    </div>
+    <div class="typography-line">
+        <p><i class="fas fa-dollar-sign"></i> Compensation: {{ listing.compensation }} | <i
+                class="now-ui-icons business_briefcase-24"></i> Company: {{listing.organization}} | <i
+                class="now-ui-icons files_paper"></i> Contract Type: {{listing.contract_type}}</p>
+    </div>
+    <div class="border-left border-secondary pl-3">
+        <h4>Description: </h4>
+        <p>{{ listing.job_description }}</p>
+    </div>
+    <div class="typography-line">
+        <h6>{{ listing.positions_available }} position{{listing.positions_available|pluralize}} available.</h6>
+    </div>
+</div>
+{% endblock content %}

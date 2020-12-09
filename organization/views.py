@@ -187,11 +187,12 @@ def OrgApplicantsView(request, organization_name):
 
 def OrgApplicantView(request, organization_name, username):
     organization=Organization.objects.filter(username=organization_name)[0]
-    applicant=Applicant.objects.filter(username=username)
+    applicant=Applicant.objects.filter(username=username)[0]
     
     context = {
         'organization_name':organization_name,
         'organization':organization,
-        'applicant':applicant
+        'applicant':applicant,
+        'username':username
     }
     return render(request, 'organization/org-user.html', context)

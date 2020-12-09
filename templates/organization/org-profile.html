@@ -4,7 +4,7 @@
 {% block content %}
 {{ block.super }}
 <div class="wrapper">
-  <div class="page-header clear-filter page-header-small" filter-color="orange">
+  <div class="page-header page-header-small">
     <div class="page-header-image" data-parallax="true"
       style="background-image:url('{{ organization.cover_picture.url }}');">
     </div>
@@ -15,10 +15,6 @@
       <h3 class="title">{{organization}}</h3>
       <p class="category">{{organization.city}}, {{organization.state}}</p>
       <div class="content">
-        <div class="social-description">
-          <h2>260</h2>
-          <p>Employees</p>
-        </div>
         <div class="social-description">
           <h2>{{number_of_listings}}</h2>
           <p>Open Positions</p>

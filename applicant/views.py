@@ -4,7 +4,12 @@ from organization.models import Organization, Listing, Offer
 
 # Create your views here.
 def ProfileView(request, username):
-    pass
+    applicant = Applicant.objects.filter(username=username)[0]
+    context = {
+        'username':username,
+        'applicant':applicant
+    }
+    return render(request, 'applicant/profile.html', context)
 
 def ProfileEditView(request, username):
     applicant = Applicant.objects.filter(username=username)[0]
@@ -54,11 +59,12 @@ def ListingsView(request, username):
 
 def ListingView(request, username, listing_id):
     applicant = Applicant.objects.filter(username=username)
+    listing = Listing.objects.filter(id=listing_id)[0]
 
     context = {
         'username':username,
         'applicant':applicant,
-        'listing':Listing.objects.filter(id=listing_id)
+        'listing':listing
     }
     return render(request, 'applicant/listing.html', context)
 

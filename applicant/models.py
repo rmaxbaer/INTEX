@@ -21,7 +21,7 @@ class Applicant(User):
     state = models.CharField(max_length=50, blank=True)
     zip = models.CharField(max_length=50, blank=True)
     profile_picture = models.ImageField(upload_to='profile_picture/', height_field=None, width_field=None, max_length=None, blank=True)
-    cover_picture = models.ImageField(upload_to='cover_picture/', height_field=None, width_field=None, max_length=None, blank=True)
+    cover_picture = models.ImageField(upload_to='cover_picture/', height_field=None, width_field=None, max_length=None, blank=True, default='cover_picture/cover-pattern.jpg')
     about_me = models.TextField(blank=True)
 
     def __str__(self):
@@ -30,6 +30,7 @@ class Applicant(User):
 class Application(models.Model):
 
     application_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    available_date = models.DateField(auto_now=False, auto_now_add=False)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     listing = models.ForeignKey('organization.Listing', on_delete=models.CASCADE)
     offer_made = models.BooleanField(default=False)

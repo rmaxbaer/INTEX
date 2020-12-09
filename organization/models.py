@@ -26,7 +26,7 @@ class Listing(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=50)
     job_description = models.TextField()
-    contract_type = models.CharField(max_length=50, blank=True)
+    contract_type = models.CharField(max_length=50, blank=True, default="--")
     compensation = models.CharField(max_length=50)
     relocation_assistance = models.BooleanField(default=False)
     skills = models.ManyToManyField('applicant.Skill', blank=True)
