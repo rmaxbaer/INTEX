@@ -8,24 +8,27 @@
             <h3>Offer</h3>
         </div>
         <div class="col-md-3">
-            <button class="btn btn-primary btn-round ml-auto" type="button" data-toggle="modal" data-target="#rescindModal">
+            <button class="btn btn-primary btn-round ml-auto" type="button" data-toggle="modal"
+                data-target="#rescindModal">
                 <i class="fas fa-pencil-alt"></i>&#160;Rescind Offer
             </button>
         </div>
         <form method="post">
             {% csrf_token %}
-            <div class="modal fade" id="rescindModal" tabindex="-1" role="dialog" aria-labelledby="rescindModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to rescind this offer?</h5>
+            <div class="modal fade" id="rescindModal" tabindex="-1" role="dialog" aria-labelledby="rescindModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to rescind this offer?
+                            </h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go Back</button>
+                            <button type="submit" name="submit" class="btn btn-danger">Yes, Rescind Offer</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go Back</button>
-                    <button type="submit" name="submit" class="btn btn-danger">Yes, Rescind Offer</button>
-                </div>
-                </div>
-            </div>
             </div>
         </form>
     </div>

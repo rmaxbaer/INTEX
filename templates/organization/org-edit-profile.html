@@ -3,9 +3,9 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
-<h2>Edit Profile</h2>
+    <h2>Edit Profile</h2>
     <form class="form" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+        {% csrf_token %}
         <div class="input-group input-lg">
             <div class="input-group-prepend">
                 <span class="input-group-text">
@@ -20,7 +20,8 @@
                     <i class="now-ui-icons ui-1_email-85"></i>
                 </span>
             </div>
-            <input type="email" class="form-control" name="email" {%if organization.email != ''%} value="{{organization.email}}" {% endif %} placeholder="Email..." >
+            <input type="email" class="form-control" name="email" {%if organization.email != ''%}
+                value="{{organization.email}}" {% endif %} placeholder="Email...">
         </div>
         <div class="input-group input-lg">
             <div class="input-group-prepend">
@@ -32,7 +33,7 @@
         </div>
         <label for="address">Address: </label>
         <div class="input-group input-lg">
-            
+
             <div class="input-group-prepend">
                 <span class="input-group-text">
                     <i class="far fa-building"></i>
@@ -108,14 +109,16 @@
         <label for="size">Company Details: </label>
         <div class="form-row">
             <div class="input-group col-md-6 input-lg col">
-                <input type="text" class="form-control" id="size" name="size" placeholder="Size"/>
+                <input type="text" class="form-control" id="size" name="size" placeholder="Size" />
             </div>
-        <div class="input-group col-md-6 input-lg col">
-            <input type="text" class="form-control" id="sectors" name="sectors" placeholder="Sector"/>
+            <div class="input-group col-md-6 input-lg col">
+                <input type="text" class="form-control" id="sectors" name="sectors" placeholder="Sector" />
+            </div>
         </div>
         <div class="input-group">
             <label for="description">Description: </label>
-            <textarea rows="10" class="form-control" id="description" name="description">{{organization.description}}</textarea>
+            <textarea rows="10" class="form-control" id="description"
+                name="description">{{organization.description}}</textarea>
         </div>
         <div class="input-group input-lg">
             <div class="input-group-prepend">
@@ -123,7 +126,7 @@
                     <i class="now-ui-icons ui-1_calendar-60"></i>
                 </span>
             </div>
-            <input type="date" class="form-control" id="date_founded" name="date_founded" value="{{ date_founded }}"/>
+            <input type="date" class="form-control" id="date_founded" name="date_founded" value="{{ date_founded }}" />
         </div>
         <div class="form-row">
             <div class="input-group input-lg col-md-6">
@@ -133,7 +136,8 @@
                     </span>
                 </div>
                 <label for="profile_picture" class="form-control">Choose a profile picture:</label>
-                <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/png, image/jpeg, image/jpg, image/gif"/>
+                <input type="file" class="form-control" id="profile_picture" name="profile_picture"
+                    accept="image/png, image/jpeg, image/jpg, image/gif" />
             </div>
             <div class="input-group input-lg col-md-6">
                 <div class="input-group-prepend">
@@ -142,11 +146,13 @@
                     </span>
                 </div>
                 <label for="cover_picture" class="form-control">Choose a cover photo:</label>
-                <input type="file" class="form-control" id="cover_picture" name="cover_picture" accept="image/png, image/jpeg, image/jpg"/>
+                <input type="file" class="form-control" id="cover_picture" name="cover_picture"
+                    accept="image/png, image/jpeg, image/jpg" />
             </div>
         </div>
         <div class="form-row ml-auto mr-auto">
-            <button class="btn btn-danger btn-round" type="button" onclick="location.href='{% url 'org-profile' organization_name %}'">
+            <button class="btn btn-danger btn-round" type="button"
+                onclick="location.href='{% url 'org-profile' organization_name %}'">
                 <i class="now-ui-icons ui-1_simple-remove"></i>&#160;Discard Changes
             </button>
             <button class="btn btn-primary btn-round" type="submit">
