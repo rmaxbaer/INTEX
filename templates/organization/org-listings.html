@@ -3,58 +3,64 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
-<div class="row">
-    <div class="col-md-8 col-xl-10">
-        <h1>Listings</h1>
+    <div class="row">
+        <div class="col-md-8 col-xl-10">
+            <h1>Listings</h1>
+        </div>
+        <div class="col-md-2 col-xl-2">
+            <button class="btn btn-primary btn-round ml-auto" type="button"
+                onclick="location.href='{% url 'org-listing-create' organization_name %}'">
+                <i class="now-ui-icons ui-1_simple-add"></i>&#160;Create Listing
+            </button>
+        </div>
     </div>
-    <div class="col-md-2 col-xl-2">
-        <button class="btn btn-primary btn-round ml-auto" type="button" onclick="location.href='{% url 'org-listing-create' organization_name %}'">
-            <i class="now-ui-icons ui-1_simple-add"></i>&#160;Create Listing
-        </button>
-    </div>
-</div>
-<div class="row">
-{% for listing in listings %}
+    <div class="row">
+        {% for listing in listings %}
 
-<div class="col-md-10 col-xl-6">
-    <!-- Tabs with Background on Card -->
-    <div class="card">
-        <div class="card-header">
-            <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-                <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#listing{{listing.id}}" role="tab" aria-selected="true">Listing</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#moreinfo{{listing.id}}" role="tab" aria-selected="false">More Info</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'org-listing' organization_name listing.id %}">View</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'org-listing-edit' organization_name listing.id %}">Edit</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <!-- Tab panes -->
-            <div class="tab-content text-left">
-                <div class="tab-pane active" id="listing{{listing.id}}" role="listing{{listing.id}}">
-                    <p>Job Title: {{listing.job_title}}</p>
-                    <p>Company: {{listing.organization}}</p>
-                    <p>Location: {{listing.location}}</p>
-                    <p>Relocation Assistance: {% if listing.relocation_assistance %}Yes{% else %}No{% endif %}</p>   
+        <div class="col-md-10 col-xl-6">
+            <!-- Tabs with Background on Card -->
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist"
+                        data-background-color="orange">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#listing{{listing.id}}" role="tab"
+                                aria-selected="true">Listing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#moreinfo{{listing.id}}" role="tab"
+                                aria-selected="false">More Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'org-listing' organization_name listing.id %}">View</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{% url 'org-listing-edit' organization_name listing.id %}">Edit</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="tab-pane" id="moreinfo{{listing.id}}" role="moreinfo{{listing.id}}">
-                    <p>Description: {{listing.job_description}}</p>
+                <div class="card-body">
+                    <!-- Tab panes -->
+                    <div class="tab-content text-left">
+                        <div class="tab-pane active" id="listing{{listing.id}}" role="listing{{listing.id}}">
+                            <p>Job Title: {{listing.job_title}}</p>
+                            <p>Company: {{listing.organization}}</p>
+                            <p>Location: {{listing.location}}</p>
+                            <p>Relocation Assistance: {% if listing.relocation_assistance %}Yes{% else %}No{% endif %}
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="moreinfo{{listing.id}}" role="moreinfo{{listing.id}}">
+                            <p>Description: {{listing.job_description}}</p>
+                        </div>
+
+                    </div>
                 </div>
-                
             </div>
+            <!-- End Tabs on plain Card -->
         </div>
+        {% endfor %}
     </div>
-    <!-- End Tabs on plain Card -->
-</div>
-{% endfor %}
-</div>
 </div>
 
 {% endblock content %}

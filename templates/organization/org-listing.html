@@ -8,7 +8,8 @@
             <h3>Listing</h3>
         </div>
         <div class="col-md-2">
-            <button class="btn btn-primary btn-round ml-auto" type="button" onclick="location.href='{% url 'org-listing-edit' organization_name listing.id %}'">
+            <button class="btn btn-primary btn-round ml-auto" type="button"
+                onclick="location.href='{% url 'org-listing-edit' organization_name listing.id %}'">
                 <i class="fas fa-pencil-alt"></i>&#160;Edit
             </button>
         </div>
@@ -17,20 +18,23 @@
         <h1>{{ listing.job_title }}</h1>
     </div>
     <div class="typography-line">
-        <h5>{{ listing.location }}</h5>
+        <h6>{{ listing.location }}</h6>
     </div>
     <div class="typography-line">
-        <p>{% if listing.relocation_assistance %}This position offers relocation assistance if needed.{% else %}Relocation assistance is not available for this position.{% endif %}</p>
+        <p>{% if listing.relocation_assistance %}This position offers relocation assistance if
+            needed.{% else %}Relocation assistance is not available for this position.{% endif %}</p>
     </div>
     <div class="typography-line">
-        <p><i class="now-ui-icons business_money-coins"></i> {{ listing.compensation }}</p>
+        <p><i class="fas fa-dollar-sign"></i> Compensation: {{ listing.compensation }} | <i
+                class="now-ui-icons business_briefcase-24"></i> Company: {{listing.organization}} | <i
+                class="now-ui-icons files_paper"></i> Contract Type: {{listing.contract_type}}</p>
     </div>
-    <blockquote class="blockquote">
+    <div class="border-left border-secondary pl-3">
         <h4>Description: </h4>
         <p>{{ listing.job_description }}</p>
-    </blockquote>
+    </div>
     <div class="typography-line">
-        <p>{{ listing.positions_available }} position{{listing.positions_available|pluralize}} available.</p>
+        <h6>{{ listing.positions_available }} position{{listing.positions_available|pluralize}} available.</h6>
     </div>
 </div>
 {% endblock content %}

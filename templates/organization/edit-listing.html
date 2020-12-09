@@ -3,21 +3,26 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
-    <form class="form">
-        <input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job Title..."/>
-        <input type="text" class="form-control" id="location" name="location" placeholder="Location..."/>
-        <input type="text" class="form-control" id="compensation" name="compensation" placeholder="Compensation Description..."/>
-        <textarea rows="6" class="form-control" id="job_description" name="job_description" placeholder="Job Description..."></textarea>
-        <input type="text" class="form-control" id="contract_type" name="contract_type" placeholder="Contract Type..."/>
+    <form class="form" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control" id="job_title" name="job_title" value="{{listing.job_title}}" />
+        <input type="text" class="form-control" id="location" name="location" value="{{listing.location}}" />
+        <input type="text" class="form-control" id="compensation" name="compensation"
+            value="{{listing.compensation}}" />
+        <textarea rows="6" class="form-control" id="job_description"
+            name="job_description">{{listing.job_description}}</textarea>
+        <input type="text" class="form-control" id="contract_type" name="contract_type"
+            value="{{listing.contract_type}}" />
         <div class="form-row">
             <div class="form-group md-col-4">
                 <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox"> Relocation Assistance
-                    <span class="form-check-sign">
-                    <span class="check"></span>
-                    </span>
-                </label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="relocation_assistance"
+                            {% if listing.relocation_assistance %}checked{% endif %}> Relocation Assistance
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
                 </div>
             </div>
             <div class="form-group md-col-8">
@@ -25,12 +30,13 @@
                     <label for="positions_available">Positions Available:</label>
                 </div>
                 <div class="col">
-                    <input type="number" class="form-control" id="positions_available" name="positions_available" value="1" min="1" max="15">
+                    <input type="number" class="form-control" id="positions_available" name="positions_available"
+                        value="{{listing.positions_available}}" min="1" max="15">
                 </div>
-            </div> 
+            </div>
         </div>
         <button class="btn btn-primary btn-round ml-auto" type="submit">
-            <i class="now-ui-icons ui-1_check"></i>&#160;Create Listing
+            <i class="now-ui-icons ui-1_check"></i>&#160;Update Listing
         </button>
     </form>
 </div>
