@@ -28,6 +28,7 @@ def OrgProfileEditView(request, organization_name):
         organization.company_name = request.POST['company_name']
         organization.email = request.POST['email']
         organization.address = request.POST['address']
+        organization.city = request.POST['city']
         organization.state = request.POST['state']
         organization.zip = request.POST['zip']
         organization.size = request.POST['size']
