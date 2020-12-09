@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.db.models import Value as V
+from django.db.models.functions import Concat 
 from .models import Listing, Organization, Offer
 from applicant.models import Application, Applicant, Skill
 
@@ -27,6 +29,7 @@ def OrgProfileEditView(request, organization_name):
     if request.method == 'POST':
         organization.company_name = request.POST['company_name']
         organization.email = request.POST['email']
+        organization.phone_number = request.POST['phone_number']
         organization.address = request.POST['address']
         organization.city = request.POST['city']
         organization.state = request.POST['state']
@@ -183,6 +186,11 @@ def OrgApplicantsView(request, organization_name):
         'organization':organization,
         'applicants':Applicant.objects.all()
     }
+
+    if request.method == 'POST':
+        applicants = Applicant.objects.annotate(full_name=Concat('first_name', V(' '), 'last_name')).filter(full_name__icontains=request.POST['applicant_name'])
+        context['applicants']=applicants
+
     return render(request, 'organization/org-users.html', context)
 
 def OrgApplicantView(request, organization_name, username):

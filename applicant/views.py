@@ -111,17 +111,21 @@ def OfferView(request, username, offer_id):
 
     if request.method == 'POST':
         offer.status = request.POST['accepted']
+        offer.save()
 
     return render(request, 'applicant/offer.html', context)
 
 def OrganizationView(request, username, organization_name):
     applicant = Applicant.objects.filter(username=username)[0]
     organization = Organization.objects.filter(company_name=organization_name)[0]
+    listings=Listing.objects.filter(organization=organization)
+    number_of_listings=listings.count()
 
     context = {
         'username':username,
         'applicant':applicant,
-        'organization':organization
+        'organization':organization,
+        'number_of_listings':number_of_listings
     }
     return render(request, 'applicant/organization.html', context)
 
@@ -133,4 +137,9 @@ def OrganizationsView(request, username):
         'applicant':applicant,
         'organizations':Organization.objects.all()
     }
+
+    if request.method == 'POST':
+        organizations=Organization.objects.filter(company_name__icontains=request.POST['organization_name'])
+        context['organizations']=organizations
+
     return render(request, 'applicant/organizations.html', context)
