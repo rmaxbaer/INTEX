@@ -15,7 +15,7 @@ class Organization(User):
     state = models.CharField(max_length=50, blank=True)
     zip = models.CharField(max_length=50, blank=True)
     profile_picture = models.ImageField(upload_to='profile_picture/', height_field=None, width_field=None, max_length=None, blank=True)
-    cover_picture = models.ImageField(upload_to='cover_picture/', height_field=None, width_field=None, max_length=None, blank=True)
+    cover_picture = models.ImageField(upload_to='cover_picture/', height_field=None, width_field=None, max_length=None, default='cover_picture/cover-pattern.jpg')
 
     def __str__(self):
         return self.company_name

@@ -30,7 +30,6 @@ class Applicant(User):
 class Application(models.Model):
 
     application_date = models.DateTimeField(auto_now=False, auto_now_add=False)
-    available_date = models.DateField(auto_now=False, auto_now_add=False)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     listing = models.ForeignKey('organization.Listing', on_delete=models.CASCADE)
     offer_made = models.BooleanField(default=False)
