@@ -111,11 +111,12 @@ def OfferView(request, username, offer_id):
 
 def OrganizationView(request, username, organization_name):
     applicant = Applicant.objects.filter(username=username)
+    organization = Organization.objects.filter(username=organization_name)[0]
 
     context = {
         'username':username,
         'applicant':applicant,
-        'organization':Organization.objects.filter(username=organization_name)
+        'organization':organization
     }
     return render(request, 'applicant/organization.html', context)
 
