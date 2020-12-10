@@ -28,7 +28,7 @@
                     <i class="fas fa-dollar-sign"></i>
                 </span>
             </div>
-            <input type="text" class="form-control" id="compensation" name="compensation"
+            <input type="text" class="form-control" id="compensation" name="compensation" tabindex="1" data-toggle="popover" data-trigger="focus" title="Quick Tip!" data-content="Applicants are more likely to apply when compensation is disclosed in the listing. Be upfront!"
                 placeholder="Compensation Description..." />
         </div>
         <div class="input-group input-lg">
@@ -47,8 +47,8 @@
         <div class="form-group input-lg">
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="relocation_assistance"> Relocation Assistance
-                    <span class="form-check-sign">
+                    <input class="form-check-input" type="checkbox" name="relocation_assistance" > Relocation Assistance
+                    <span tabindex="0" class="form-check-sign" data-toggle="popover" data-trigger="trigger" data-placement="right" title="Great Work!" data-content="Applicants are more likely to apply when relocation assistance is offered!">
                         <span class="check"></span>
                     </span>
                 </label>

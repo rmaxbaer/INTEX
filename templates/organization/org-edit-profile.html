@@ -52,7 +52,7 @@
             <div class="form-group col-md-5 input-lg">
                 <select id="inputState" class="form-control" name="state"  >
                     <option {%if organization.state != ''%}
-                value="{{organization.state}}" {% else %} value=""{% endif %} selected disabled>{%if organization.state != ''%}
+                value="{{organization.state}}" {% else %} value=""{% endif %} selected>{%if organization.state != ''%}
                 {{organization.state}}{% else %}State...{% endif %}</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
