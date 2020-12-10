@@ -66,15 +66,17 @@ def ListingView(request, username, listing_id):
         'applicant':applicant,
         'listing':listing
     }
+
     return render(request, 'applicant/listing.html', context)
 
 def ApplicationView(request, username, application_id):
-    applicant = Applicant.objects.filter(username=username)
+    applicant = Applicant.objects.filter(username=username)[0]
+    application = Application.objects.filter(id=application_id)[0]
 
     context = {
         'username':username,
         'applicant':applicant,
-        'application':Application.objects.filter(id=application_id)
+        'application':application
     }
     return render(request, 'applicant/application.html', context)
 

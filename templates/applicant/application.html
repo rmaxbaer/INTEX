@@ -1,0 +1,33 @@
+{% extends 'applicant/_base.html' %}
+{% load static %}
+{% block content %}
+{{ block.super }}
+<div class="container">
+    <div class="typography-line">
+        <h1>{{ application.applicant }} - {{application.listing.job_title}}</h1>
+    </div>
+    <div class="typography-line">
+        <h6>Location Listed: {{ application.listing.location }}</h6>
+    </div>
+    <div class="typography-line">
+        <p>{% if application.listing.relocation_assistance %}You've offered relocation assistance for this position.{% else %}Relocation assistance is not available for this position.{% endif %}</p>
+    </div>
+    <div class="typography-line">
+        <p><i class="fas fa-dollar-sign"></i> Compensation Listed: {{ application.listing.compensation }} | <i
+                class="now-ui-icons files_paper"></i> Contract Type Listed: {{listing.contract_type}}</p>
+    </div>
+    <div class="typography-line">
+        <p><i class="now-ui-icons ui-1_calendar-60"></i> Application recieved: {{ application.application_date }}</p>
+    </div>
+    <div class="typography-line">
+        <p><i class="now-ui-icons ui-2_time-alarm"></i> Applicant Available Starting Date: {{ application.application_date }}</p>
+    </div>
+    <div class="border-left border-secondary pl-3">
+        <h4>About Applicant: </h4>
+        <p>{{ application.applicant.about_me }}</p>
+    </div>
+    <div class="typography-line">
+        <h6>{{ listing.positions_available }} position{{listing.positions_available|pluralize}} available.</h6>
+    </div>
+</div>
+{% endblock content %}
