@@ -42,7 +42,8 @@
                     <div class="tab-content text-left">
                         <div class="tab-pane active" id="applicant{{applicant.id}}" role="applicant{{applicant.id}}">
                             <p>Applicant: {{applicant}}</p>
-                            <p>Address: </p>
+                            <p>Location: {{applicant.city}}, {{applicant.state}}</p>
+                            <p>About Me: {{applicant.about_me}}</p>
                             {% comment %} <p>Age: {{((today().year) - (applicant.birth_date.year))}}</p>
                             {% endcomment %}
                         </div>
